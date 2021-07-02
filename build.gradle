@@ -12,12 +12,10 @@ buildscript {
             url "http://maven.google.com"
         }
         maven { url 'https://developer.huawei.com/repo/'}
-
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-//		classpath 'com.huawei.agconnect:agcp:1.1.1.300'
     }
 }
 subprojects {
@@ -33,9 +31,8 @@ subprojects {
 allprojects {
     repositories {
         maven { url "https://jitpack.io" }
-        jcenter()
-        google()
-
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
         mavenCentral()
         maven { url 'https://developer.huawei.com/repo/'}
         maven { url 'https://repo1.maven.org/maven2/' }
@@ -44,9 +41,9 @@ allprojects {
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
         maven { url 'https://dl.bintray.com/umsdk/release' }
         maven { url "http://maven.google.com" }
+        jcenter()
+        google()
 
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
     }
 }
 
