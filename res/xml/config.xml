@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="1" id="com.supconit.hcmobile" ios-CFBundleVersion="1" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>HomeyComb Mobile</name>
+    <description>A sample Supconit HoneyComb Mobile application that responds to the deviceready event.</description>
+    <author email="yanfei@supcon.com" href="">Supconit HoneyComb Mobile Team</author>
+    <displayName>hcmobile</displayName>
+    <hcmobile>
+        <package value="com.supconit.hcmobile" />
+        <index value="" />
+        <login value="" />
+        <buildType value="debug" />
+        <meizu_appId value="142167" />
+        <meizu_appKey value="0a5371528cc548bc93b50c4516927c8f" />
+        <vivo_appKey value="26f3271575f63dec735fb7ca0de992dc" />
+        <vivo_appId value="105466540" />
+        <mi_appId value="2882303761519014666" />
+        <mi_appKey value="5541901436666" />
+        <oppo_appKey value="9bbfee188fac4c3ea54ccb1c0c373e29" />
+        <oppo_appSecret value="69abd48955e849b29cbbfa575ed23fe5" />
+        <rongIM_appKey value="vnroth0kvad0o" />
+        <gaodeMapKeyIos value="" />
+        <gaodeMapKeyAndroid value="95ad8739cddfb8b8b412f89d8e08aa47" />
+        <umengAndroidKey value="5bc7fa60f1f556e639000014" />
+        <umengAndroidSecret value="74f6be192e6418247d4f6a1df4cab5f5" />
+        <umengiOSKey value="" />
+        <debugingSetting value="true" />
+        <share_sina_appKey value="1276821741" />
+        <share_sina_redirect_url value="http://supconit.com" />
+        <share_qq_appKey value="1108059504" />
+        <share_alipay_appKey value="_2018122862703340" />
+        <share_alipay_redirect_url value="" />
+        <StatusBarStyle value="0" />
+        <share_wechat_appKey value="wx32beb8513d36123e" />
+        <share_wechat_secret value="53e63e507c3e67f7fa13713892063e41" />
+        <nim_appKey value="54a2786839de9a3ee87ac802bfb53ab4" />
+        <nim_appSecret value="694d1f218ee3" />
+        <nim_amap_key value="95ad8739cddfb8b8b412f89d8e08aa47" />
+        <adviewAndroidSDKkey value="SDK202019160701532fn3xaw2qng6i4b" />
+        <sfHost value="" />
+        <sfUser value="" />
+        <pass value="" />
+        <share_dingtalk_appID value="dingoavvquvr6ldtigbbjl" />
+        <layout_immersion value="false" />
+        <android_keyStore_Release_FilePath value="hc.keystore" />
+        <android_keyStore_Release_FilePath_PassWord value="hcmobile" />
+        <android_keyStore_Release_Alias value="hc_mobile_release" />
+        <android_keyStore_Release_Alias_PassWord value="hcmobile" />
+        <android_keyStore_Debug_FilePath value="hc.keystore" />
+        <android_keyStore_Debug_FilePath_PassWord value="hcmobile" />
+        <android_keyStore_Debug_Alias value="hc_mobile_debug" />
+        <android_keyStore_Debug_Alias_PassWord value="hcmobile" />
+        <appID value="_1157665966863" />
+        <isCloudApp value="0" />
+        <arcFace_appId value="73zWQAgz3Q7syNUQmExhgiyqG9YuGQgcrAAYa9R61w9R" />
+        <arcFace_sdkKey value="CGzRYuvek7QhfguBGRsyY59G3DZmREdQP3D4ARknacNc" />
+        <iflytek_appId value="5c7ccfce" />
+        <ai_apiKey value="Z3OH2P8DMEkZZMr4KYwDCxN8" />
+        <ai_secret value="pq9zOCAuMPfGj5QBl8qzRSazgULtwECQ" />
+        <hc_mobile_server_address value="http://10.10.77.106:8015" />
+        <hc_log_server_address value="" />
+        <hc_authorize_server_address value="" />
+        <app_title_show value="" />
+        <app_title_bac value="" />
+        <android_canal value="" />
+        <sdklib>
+        </sdklib>
+    </hcmobile>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="androidamap:*" />
+    <allow-intent href="market:*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="data:*" />
+    <icon density="ldpi" src="res/icon/android/ldpi.png" />
+    <icon density="mdpi" src="res/icon/android/mdpi.png" />
+    <icon density="hdpi" src="res/icon/android/hdpi.png" />
+    <icon density="xhdpi" src="res/icon/android/xhdpi.png" />
+    <icon density="xxhdpi" src="res/icon/android/xxhdpi.png" />
+    <icon density="xxxhdpi" src="res/icon/android/xxxhdpi.png" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="SplashShowOnlyFirstTime" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SettingUrl" value="hcmobile/setting.html" />
+    <preference name="ErrorUrl" value="hcmobile/error.html" />
+    <preference name="AppendUserAgent" value="android" />
+    <feature name="FilePicker">
+        <param name="android-package" value="com.supconit.hcmobile.plugins.documentPick.FileManager" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Center">
+        <param name="android-package" value="com.supconit.hcmobile.plugins.cent.Center" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="DocumentPicker">
+        <param name="android-package" value="com.supconit.hcmobile.plugins.documentPick.FileManager" />
+        <param name="onload" value="true" />
+    </feature>
+    <gitMark>
+        <gitAddress value="git@git.supconit.com:mobile/hcmobile-plugin-center.git" />
+        <gitBranch value="dev" />
+        <pluginId value="hcmobile-plugin-center" />
+        <pluginVersion value="dev" />
+    </gitMark>
+    <feature name="CenterObserver">
+        <param name="application-observer-package" value="com.supconit.hcmobile.plugins.debug.ServerObserver" />
+    </feature>
+    <feature name="Debugger">
+        <param name="android-package" value="com.supconit.hcmobile.plugins.debug.DebugPlugin" />
+    </feature>
+    <gitMark>
+        <gitAddress value="git@git.supconit.com:mobile/hcmobile-plugin-debug.git" />
+        <gitBranch value="dev" />
+        <pluginId value="hcmobile-plugin-debug" />
+        <pluginVersion value="dev" />
+    </gitMark>
+    <feature name="HC_Developer">
+        <param name="android-package" value="com.supconit.hcmobile.plugins.developer.developer" />
+    </feature>
+    <feature name="DevObserver">
+        <param name="application-observer-package" value="com.supconit.hcmobile.plugins.developer.DeveloperObServer" />
+    </feature>
+    <gitMark>
+        <gitAddress value="git@git.supconit.com:mobile/hcmobile-plugin-developer.git" />
+        <gitBranch value="dev" />
+        <pluginId value="hcmobile-plugin-developer" />
+        <pluginVersion value="dev" />
+    </gitMark>
+    <feature name="File">
+        <param name="android-package" value="com.supconit.hcmobile.plugins.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <gitMark>
+        <gitAddress value="git@git.supconit.com:mobile/hcmobile-plugin-file-base.git" />
+        <gitBranch value="dev" />
+        <pluginId value="hcmobile-plugin-file-base" />
+        <pluginVersion value="dev" />
+    </gitMark>
+</widget>

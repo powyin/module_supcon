@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/hc_mobile_dev_debug_only_one"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/hc_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="35dp"
+        >
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:padding="5dp"
+            android:src="@mipmap/setting"
+
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="调试  "
+            android:textColor="#77fdf4"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/log_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:background="#a9000000"
+        android:clickable="false"
+        android:focusable="false"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/hc_setting_debug_pla"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/hc_setting_debug_bac"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/hc_setting_debug_ip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:text="http://192.234.2.2:8080"
+            android:textColor="#400a08"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="请在相同局域网的浏览器内输入上面ip进入调试"
+            android:textColor="#686868"
+            android:textSize="11sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="5dp"
+            android:background="#ff000000" />
+
+        <TextView
+            android:id="@+id/hc_setting_log_show"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="开启log显示"
+            android:textColor="#4d8dfc"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ff000000" />
+
+        <TextView
+            android:id="@+id/hc_setting_log_hide"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="关闭log显示"
+            android:textColor="#4d8dfc"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ff000000" />
+
+        <TextView
+            android:id="@+id/hc_setting_debug_all_hide"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="隐藏调试"
+            android:textColor="#4d8dfc"
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>

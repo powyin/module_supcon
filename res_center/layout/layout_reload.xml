@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <ImageView
+                android:id="@+id/hc_base_back_img"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:padding="14dp"
+                android:src="@drawable/hc_back" />
+
+            <TextView
+                android:id="@+id/hc_base_back_tex"
+                android:layout_width="60dp"
+                android:layout_height="45dp"
+                android:text="返回"
+                android:textSize="15sp"
+                android:textColor="#5a9ca6"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="配置主页地址"
+                android:textColor="#484848"
+                android:textSize="17sp" />
+
+
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ff000000" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_weight="10" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/hc_reload_url_edi_bac"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="1px" />
+
+            <TextView
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:text="ip地址:"
+                android:textColor="#585858"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/hc_reload_ip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入ip地址(例如192.168.2.2)"
+                android:text=""
+                android:textColor="#646464"
+                android:textSize="15sp" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="1px" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_weight="10" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/hc_reload_url_edi_bac"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="1px" />
+
+            <TextView
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:text="端口:"
+                android:textColor="#585858"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/hc_reload_dk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入端口(例如8080)"
+                android:text=""
+                android:textColor="#646464"
+                android:textSize="15sp" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="1px" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_weight="10" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/hc_reload_url_edi_bac"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="1px" />
+
+            <TextView
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:text="路径"
+                android:textColor="#585858"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/hc_reload_path"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入path(例如/hc/index.html)"
+                android:text=""
+                android:textColor="#646464"
+                android:textSize="15sp" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="1px" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_weight="10" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tip: 主页地址=ip地址:端口/路径"
+            android:textSize="14sp"
+            android:textColor="#9e9e9e"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="300" />
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/hc_reload_config"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/hc_reload_url_edi_config"
+            android:gravity="center"
+            android:text="确认"
+            android:onClick="onClick"
+            android:textColor="#515151"
+            android:textSize="20sp" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="55" />
+
+        <com.supconit.hcmobile.widget.KeyBoardWatchLayout
+            android:id="@+id/hc_map_keyboard_water"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

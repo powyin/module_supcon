@@ -1,0 +1,422 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {
+      "res/xml/config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.telephony.Sms\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Dial\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.telephony.Dial\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"FilePicker\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.documentPick.FileManager\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Center\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.cent.Center\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"DocumentPicker\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.documentPick.FileManager\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<gitMark><gitAddress value=\"git@git.supconit.com:mobile/hcmobile-plugin-center.git\" /><gitBranch value=\"dev\" /><pluginId value=\"hcmobile-plugin-center\" /><pluginVersion value=\"dev\" /></gitMark>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"CenterObserver\"><param name=\"application-observer-package\" value=\"com.supconit.hcmobile.plugins.debug.ServerObserver\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Debugger\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.debug.DebugPlugin\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<gitMark><gitAddress value=\"git@git.supconit.com:mobile/hcmobile-plugin-debug.git\" /><gitBranch value=\"dev\" /><pluginId value=\"hcmobile-plugin-debug\" /><pluginVersion value=\"dev\" /></gitMark>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"HC_Developer\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.developer.developer\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"DevObserver\"><param name=\"application-observer-package\" value=\"com.supconit.hcmobile.plugins.developer.DeveloperObServer\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<gitMark><gitAddress value=\"git@git.supconit.com:mobile/hcmobile-plugin-developer.git\" /><gitBranch value=\"dev\" /><pluginId value=\"hcmobile-plugin-developer\" /><pluginVersion value=\"dev\" /></gitMark>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<allow-navigation href=\"cdvfile:*\" />",
+              "count": 1
+            },
+            {
+              "xml": "<gitMark><gitAddress value=\"git@git.supconit.com:mobile/hcmobile-plugin-file-base.git\" /><gitBranch value=\"dev\" /><pluginId value=\"hcmobile-plugin-file-base\" /><pluginVersion value=\"dev\" /></gitMark>",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "AndroidManifest.xml": {
+        "parents": {
+          "/manifest": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.CALL_PHONE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
+              "count": 1
+            }
+          ],
+          "/manifest/application": [
+            {
+              "xml": "<activity android:configChanges=\"orientation|keyboardHidden|keyboard|screenSize|locale\" android:name=\"com.supconit.hcmobile.plugins.debug.DebugSignActivity\" android:screenOrientation=\"${hc_origin_def}\" android:theme=\"@style/Theme.AppCompat.Light.NoActionBar\" />",
+              "count": 1
+            }
+          ],
+          "/*": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+              "count": 1
+            }
+          ],
+          "application": [
+            {
+              "xml": "<activity android:configChanges=\"orientation|keyboardHidden|keyboard|screenSize|locale\" android:name=\"com.supconit.hcmobile.plugins.cent.ReloadUrlActivity\" android:screenOrientation=\"${hc_origin_def}\" android:theme=\"@style/Theme.AppCompat.Light.NoActionBar\" />",
+              "count": 1
+            },
+            {
+              "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"android.support.v4.content.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/provider_paths\" /></provider>",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.supconit.hcmobile"
+    },
+    "cordova-plugin-cocoapod-support": {
+      "PACKAGE_NAME": "com.supconit.hcmobile"
+    },
+    "hcmobile-plugin-center": {
+      "PACKAGE_NAME": "com.supconit.hcmobile"
+    },
+    "hcmobile-plugin-debug": {
+      "PACKAGE_NAME": "com.supconit.hcmobile"
+    },
+    "hcmobile-plugin-developer": {
+      "PACKAGE_NAME": "com.supconit.hcmobile"
+    },
+    "hcmobile-plugin-file-base": {
+      "PACKAGE_NAME": "com.supconit.hcmobile"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "id": "hcmobile-plugin-center.ShareImageObject",
+      "file": "plugins/hcmobile-plugin-center/www/ShareImageObject.js",
+      "pluginId": "hcmobile-plugin-center",
+      "clobbers": [
+        "ShareImageObject"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-center.ShareMusicObject",
+      "file": "plugins/hcmobile-plugin-center/www/ShareMusicObject.js",
+      "pluginId": "hcmobile-plugin-center",
+      "clobbers": [
+        "ShareMusicObject"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-center.ShareTextObject",
+      "file": "plugins/hcmobile-plugin-center/www/ShareTextObject.js",
+      "pluginId": "hcmobile-plugin-center",
+      "clobbers": [
+        "ShareTextObject"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-center.ShareVideoObject",
+      "file": "plugins/hcmobile-plugin-center/www/ShareVideoObject.js",
+      "pluginId": "hcmobile-plugin-center",
+      "clobbers": [
+        "ShareVideoObject"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-center.ShareWebpageObject",
+      "file": "plugins/hcmobile-plugin-center/www/ShareWebpageObject.js",
+      "pluginId": "hcmobile-plugin-center",
+      "clobbers": [
+        "ShareWebpageObject"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-center.ShareScene",
+      "file": "plugins/hcmobile-plugin-center/www/ShareScene.js",
+      "pluginId": "hcmobile-plugin-center",
+      "clobbers": [
+        "ShareScene"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-center.ShareUtils",
+      "file": "plugins/hcmobile-plugin-center/www/ShareUtils.js",
+      "pluginId": "hcmobile-plugin-center",
+      "clobbers": [
+        "ShareUtils"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-center.FilePicker",
+      "file": "plugins/hcmobile-plugin-center/www/FilePicker.js",
+      "pluginId": "hcmobile-plugin-center",
+      "merges": [
+        "navigator.filePicker"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-center.MobileCenter",
+      "file": "plugins/hcmobile-plugin-center/www/MobileCenter.js",
+      "pluginId": "hcmobile-plugin-center",
+      "merges": [
+        "navigator.mobileCenter"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-center.StatusBar",
+      "file": "plugins/hcmobile-plugin-center/www/StatusBar.js",
+      "pluginId": "hcmobile-plugin-center",
+      "merges": [
+        "navigator.statusbar"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-debug.Debugger",
+      "file": "plugins/hcmobile-plugin-debug/www/debugger.js",
+      "pluginId": "hcmobile-plugin-debug",
+      "merges": [
+        "navigator.debugger"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-developer.HC_Developer",
+      "file": "plugins/hcmobile-plugin-developer/www/developer.js",
+      "pluginId": "hcmobile-plugin-developer",
+      "clobbers": [
+        "navigator.developer"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.DirectoryEntry",
+      "file": "plugins/hcmobile-plugin-file-base/www/DirectoryEntry.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.DirectoryEntry"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.DirectoryReader",
+      "file": "plugins/hcmobile-plugin-file-base/www/DirectoryReader.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.DirectoryReader"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.Entry",
+      "file": "plugins/hcmobile-plugin-file-base/www/Entry.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.Entry"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.File",
+      "file": "plugins/hcmobile-plugin-file-base/www/File.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.File"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.FileEntry",
+      "file": "plugins/hcmobile-plugin-file-base/www/FileEntry.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.FileEntry"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.FileError",
+      "file": "plugins/hcmobile-plugin-file-base/www/FileError.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.FileError"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.FileReader",
+      "file": "plugins/hcmobile-plugin-file-base/www/FileReader.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.FileReader"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.FileSystem",
+      "file": "plugins/hcmobile-plugin-file-base/www/FileSystem.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.FileSystem"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.FileUploadOptions",
+      "file": "plugins/hcmobile-plugin-file-base/www/FileUploadOptions.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.FileUploadOptions"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.FileUploadResult",
+      "file": "plugins/hcmobile-plugin-file-base/www/FileUploadResult.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.FileUploadResult"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.FileWriter",
+      "file": "plugins/hcmobile-plugin-file-base/www/FileWriter.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.FileWriter"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.Flags",
+      "file": "plugins/hcmobile-plugin-file-base/www/Flags.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.Flags"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.LocalFileSystem",
+      "file": "plugins/hcmobile-plugin-file-base/www/LocalFileSystem.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.LocalFileSystem"
+      ],
+      "merges": [
+        "window"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.Metadata",
+      "file": "plugins/hcmobile-plugin-file-base/www/Metadata.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.Metadata"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.ProgressEvent",
+      "file": "plugins/hcmobile-plugin-file-base/www/ProgressEvent.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.ProgressEvent"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.fileSystems",
+      "file": "plugins/hcmobile-plugin-file-base/www/fileSystems.js",
+      "pluginId": "hcmobile-plugin-file-base"
+    },
+    {
+      "id": "hcmobile-plugin-file-base.requestFileSystem",
+      "file": "plugins/hcmobile-plugin-file-base/www/requestFileSystem.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "clobbers": [
+        "window.requestFileSystem"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.resolveLocalFileSystemURI",
+      "file": "plugins/hcmobile-plugin-file-base/www/resolveLocalFileSystemURI.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "merges": [
+        "window"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.androidFileSystem",
+      "file": "plugins/hcmobile-plugin-file-base/www/android/FileSystem.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "merges": [
+        "FileSystem"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-file-base.fileSystems-roots",
+      "file": "plugins/hcmobile-plugin-file-base/www/fileSystems-roots.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "runs": true
+    },
+    {
+      "id": "hcmobile-plugin-file-base.fileSystemPaths",
+      "file": "plugins/hcmobile-plugin-file-base/www/fileSystemPaths.js",
+      "pluginId": "hcmobile-plugin-file-base",
+      "merges": [
+        "cordova"
+      ],
+      "runs": true
+    }
+  ],
+  "plugin_metadata": {
+    "cordova-plugin-whitelist": "1.3.3",
+    "cordova-plugin-cocoapod-support": "1.3.0",
+    "hcmobile-plugin-center": "0.0.0",
+    "hcmobile-plugin-debug": "0.0.0",
+    "hcmobile-plugin-developer": "0.0.0",
+    "hcmobile-plugin-file-base": "0.0.0"
+  }
+}

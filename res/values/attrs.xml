@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--正方形-->
+    <declare-styleable name="WeightFrameLayout">
+        <attr name="align_orientation">
+            <enum name="horizontal" value="0"/>
+            <enum name="vertical" value="1"/>
+        </attr>
+        <attr name="wid_weight" format="float"/>
+        <attr name="hei_weight" format="float"/>
+    </declare-styleable>
+
+
+
+</resources>

@@ -1,0 +1,267 @@
+import groovy.json.JsonBuilder
+import groovy.json.JsonSlurper
+
+println("gradle build start time : " + System.currentTimeMillis())
+
+def pluginInfo = new HashMap()
+def removePluginList = []
+def pluginFrameList = new ArrayList()
+
+//gradle.ext.pluginInfo = pluginInfo
+//gradle.ext.pluginFrameList = pluginFrameList;
+//gradle.ext.removePluginList = removePluginList
+gradle.ext.util = {
+    deleteFile = { file -> deleteFile(file) }
+    pathAppend = { String host, String... paths -> pathAppend(host, paths) }
+    ensureFileExist = { File file, boolean isDir -> ensureFileExist(file, isDir) }
+}
+
+
+
+// todo android module 声明
+File root = file(".")
+for (File item : root.listFiles()) {
+    if (item.getName().startsWith("module") && item.exists() && item.listFiles() != null && item.listFiles().length > 1) {
+        include(':' + item.getName())
+    }
+}
+
+// todo 路径拼接
+static String pathAppend(String host, String... paths) {
+    host = host == null ? "" : host;
+    while (host.endsWith("/")) {
+        host = host.substring(0, host.length() - 1);
+    }
+
+    StringBuilder builder = new StringBuilder(host);
+    for (String path : paths) {
+        if (path != null && !path.equals(""))
+            builder.append(normalizeDashes(path));
+    }
+    return builder.toString();
+}
+
+static String normalizeDashes(String path) {
+    if (!path.startsWith("/")) {
+        path = "/" + path;
+    }
+
+    if (path.endsWith("/")) {
+        path = path.substring(0, path.length() - 1);
+    }
+    return path;
+}
+
+// todo 删除文件
+static void deleteFile(File dirFile) {
+    if (dirFile == null || !dirFile.exists()) {
+        return;
+    }
+    if (dirFile.isFile()) {
+        if (!dirFile.delete()) {
+            println("powyin" + "delete file fail " + dirFile);
+        }
+    } else {
+        File[] files = dirFile.listFiles();
+        for (int i = 0; files != null && i < files.length; i++) {
+            deleteFile(files[i]);
+        }
+        if (!dirFile.delete()) {
+            println("powyin" + "delete file dir fail " + dirFile);
+        }
+    }
+}
+
+// todo 新建文件
+static boolean ensureFileExist(File file, boolean isDir) {
+    if ((!isDir && file.isDirectory()) || (isDir && file.isFile())) {
+        if (!file.delete()) {
+            println("cannot delete file : " + file);
+            return false;
+        }
+    }
+
+    if (file.exists()) {
+        return true;
+    }
+
+    if (ensureFileExist(file.getParentFile(), true)) {
+        if (isDir) {
+            return file.mkdir();
+        } else {
+            try {
+                return file.createNewFile();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+    } else {
+        return false;
+    }
+}
+
+//// todo 收集删除插件列表
+//def conf = new XmlParser(false, false).parseText(file(root.getAbsolutePath() + "/res/xml/config.xml").getText())
+//conf = conf["hcmobile"][0]["plugins"][0]
+//if (conf != null) {
+//    for (def item : conf["item"]) {
+//        removePluginList.add(item.attribute("name"))
+//    }
+//}
+//// todo 解决picker插件全部依赖documentPicker问题
+//if ((!removePluginList.contains("hcmobile-plugin-audioPicker")) || (!removePluginList.contains("hcmobile-plugin-photoPicker")) || (!removePluginList.contains("hcmobile-plugin-videoPicker"))) {
+//    removePluginList.remove("hcmobile-plugin-documentPicker")
+//}
+//// todo 解决previewer插件全部依赖documentPreviewer问题
+//if ((!removePluginList.contains("hcmobile-plugin-videoPreviewer")) || (!removePluginList.contains("hcmobile-plugin-photoPreviewer")) || (!removePluginList.contains("hcmobile-plugin-audioPreviewer"))) {
+//    removePluginList.remove("hcmobile-plugin-documentPreviewer")
+//}
+//
+//
+// todo 收集项目同目录下所有插件的配置信息 文件&&framework
+//def pluginFileRoot = root.getParentFile().getParentFile();
+//pluginFileRoot = pathAppend(pluginFileRoot.getAbsolutePath(), "plugins");
+//pluginFileRoot = new File(pluginFileRoot);
+//for (File pluginFileItem : pluginFileRoot.listFiles()) {
+//    if (!pluginFileItem.getName().startsWith("hcmobile-plugin")) continue;
+//    def par = new XmlParser(false, false).parseText(file(pluginFileItem.getAbsolutePath() + "/plugin.xml").getText())
+//
+//    def pluginId = par.attribute("id");
+//    def holder = new Holder();
+//    pluginInfo.put(pluginId, holder)
+//    holder.id = pluginId;
+//
+//    for (def platform : par["platform"]) {
+//        if ("android" != platform.attribute("name")) continue
+//
+//        // 收集所有 添加的文件
+//        for (def source : platform["source-file"]) {
+//            String src = source.attribute("src")
+//            def tar = source.attribute("target-dir")
+//            if (src == null || tar == null) continue;
+//            def spl = src.split("/")
+//            src = spl[spl.length - 1]
+//            def path = pathAppend(root.getAbsolutePath(), tar, src);
+//            holder.fileList.add(path);
+//        }
+//        // 收集所有 framework
+//        for (def framework : platform["framework"]) {
+//            if ("gradleReference" == framework.attribute("type")) {
+//                String src = framework.attribute("src");
+//                String[] split = src.split("/")
+//                holder.frameworkList.add(pluginId + "/hcmobile-" + split[split.length - 1])
+//                if (!removePluginList.contains(pluginId)) {
+//                    pluginFrameList.add(pluginId + "/hcmobile-" + split[split.length - 1])
+//                }
+//            } else {
+//                holder.frameworkList.add(framework.attribute("src"))
+//                if (!removePluginList.contains(pluginId)) {
+//                    pluginFrameList.add(framework.attribute("src"))
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//// todo 插件瘦身 根据标记的插件id做对应的移除操作 移除加入文件
+//for (String removeItem : removePluginList) {
+//    def plugin = pluginInfo.get(removeItem);
+//    if (plugin == null) continue
+//    for (def item : plugin.fileList) {
+//        deleteFile(new File(item))
+//    }
+//}
+//
+//// todo 插件瘦身 移除assets/www/cordova-plugins绑定的js代码
+//def jsPluginFile = pathAppend(root.getAbsolutePath(), "assets", "www", "cordova_plugins.js")
+//String jsPluginContent = file(jsPluginFile).getText()
+//jsPluginContent.indexOf("[")
+//jsPluginContent.lastIndexOf("]")
+//def exports = jsPluginContent.substring(jsPluginContent.indexOf("["), jsPluginContent.lastIndexOf("]") + 1);
+//ArrayList arrayList = new JsonSlurper().parseText(exports)
+//for (int i = 0; i < arrayList.size(); i++) {
+//    if (removePluginList.contains(arrayList.get(i).pluginId)) {
+//        arrayList.remove(i)
+//        i--
+//    }
+//}
+//def builder = new JsonBuilder();
+//builder.call(arrayList)
+//exports = jsPluginContent.substring(0, jsPluginContent.indexOf("[")) + builder.toString() + jsPluginContent.substring(jsPluginContent.lastIndexOf("]") + 1)
+//def file = new File(jsPluginFile)
+//file.write(exports, 'UTF-8')
+
+//include ':module_supcon', ':module_app'//, ':module_ext_plugin'
+
+
+//class Holder {
+//    String id
+//    ArrayList fileList = new ArrayList()
+//    ArrayList frameworkList = new ArrayList()
+//}
+
+//        // todo 收集所有 feature属性
+//        for (def config : platform["config-file"]) {
+//            for (def feature : config["feature"]) {
+//                def name = feature.attribute("name");
+//                featureList.add(name)
+//            }
+//        }
+
+//    println("::::::::::::::::::::   " + pluginId + "   ::::::::::::::::::::")
+//    for (def item : featureList) {
+//        println("feature     :" + item)
+//    }
+//    for (def item : holder.fileList) {
+//        println("file        :" + item)
+//    }
+//
+//    for (def item : holder.frameworkList) {
+//        println("frame       :" + item)
+//    }
+
+//        "hcmobile-plugin-camera",
+//        "hcmobile-plugin-database",
+//        "hcmobile-plugin-debug",
+//        "hcmobile-plugin-device",
+//        "hcmobile-plugin-dialogs",
+//        "hcmobile-plugin-file-base",
+//        "hcmobile-plugin-file-manager",
+//        "hcmobile-plugin-file-transfer",
+//        "hcmobile-plugin-fingerprint",
+//        "hcmobile-plugin-geolocation",
+//        "hcmobile-plugin-hot-update",
+//        "hcmobile-plugin-location",
+//        "hcmobile-plugin-map",
+//        "hcmobile-plugin-media",
+//        "hcmobile-plugin-network-infrmation",
+//        "hcmobile-plugin-nfc",
+//        "hcmobile-plugin-qq",
+//        "hcmobile-plugin-scanner",
+//        "hcmobile-plugin-sina",
+//        "hcmobile-plugin-splashscreen",
+//        "hcmobile-plugin-telephony",
+//        "hcmobile-plugin-umeng",
+//        "hcmobile-plugin-vpn",
+//        "hcmobile-plugin-wechat"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

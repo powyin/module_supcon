@@ -1,0 +1,310 @@
+import java.util.regex.Pattern
+
+ext {
+    configXMl = new XmlParser(false, false).parseText(file("../res/xml/config.xml").getText());
+    appAndroidFest = new XmlParser(false, false).parseText(file("./src/main/AndroidManifest.xml").getText())
+    configDeclareAndroidPackage()
+    configDeclareAndroidFile();
+    staticBuildConfig = "";
+}
+
+apply plugin: 'com.android.application'
+
+android {
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 27
+        versionCode getVersionCodeFormVersionName()
+        versionName extractStringFromManifest("version")
+        applicationId extractStringFromManifest("id")
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a"
+        }
+        dexOptions {
+            javaMaxHeapSize "4g"
+        }
+    }
+
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    signingConfigs {
+        release {}
+        debug {}
+    }
+    configDeclareKeyStore(signingConfigs)
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            staticBuildConfig = signingConfigs.release;
+            minifyEnabled true
+            zipAlignEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            staticBuildConfig = signingConfigs.debug;
+            minifyEnabled true
+            zipAlignEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // copy build apk
+    applicationVariants.all { variant ->
+        variant.outputs.all { out ->
+            if (variant.buildType.name == "debug") {
+                outputFileName = "release.apk"
+            } else {
+                outputFileName = "release.apk"
+            }
+            out.assemble.doLast {
+                copy {
+                    from(out.outputFile)
+                    into(file("../apks/"))
+                }
+            }
+        }
+    }
+
+    defindOrigin();
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'push_version'
+        exclude 'miui_push_version'
+    }
+
+}
+
+// todo 定义横竖屏
+def defindOrigin() {
+    def hc_origin_def_value = "portrait"
+    def hc_origin_def = configXMl.preference;
+    if (hc_origin_def != null) {
+        for (def item : hc_origin_def) {
+            String value = item.attribute("name")
+            if ("Orientation".equals(value)) {
+                hc_origin_def_value = item.attribute("value")
+                break;
+            }
+        }
+    }
+
+    hc_origin_def_value = hc_origin_def_value != null ? hc_origin_def_value : "";
+
+    switch (hc_origin_def_value) {
+        case "portrait":
+        case "landscape":
+            break;
+        case "unspecified":
+        case "all":
+        case "fullSensor":
+        case "sensor":
+            hc_origin_def_value = "unspecified"
+            break;
+        default:
+            hc_origin_def_value = "portrait"
+            break;
+    }
+
+    android.defaultConfig.manifestPlaceholders.put("hc_origin_def", hc_origin_def_value)
+}
+
+
+def getVersionCodeFormVersionName() {
+    def codeString = extractStringFromManifest("version");
+    def codeS = codeString.split("\\.");
+    return Integer.valueOf(codeS[0]) * 10000 + Integer.valueOf(codeS[1]) * 100 + Integer.valueOf(codeS[2]);
+}
+
+def extractStringFromManifest(name) {
+    def manifestFile = file("../res/xml/config.xml")
+    def pattern = Pattern.compile(name + "=\"(\\S+)\"")
+    def matcher = pattern.matcher(manifestFile.getText())
+    matcher.find()
+    String ret = matcher.group(1)
+    return ret
+}
+
+// todo 配置: keyStore 默认hc.keystore
+def configDeclareKeyStore(signingConfigs) {
+    def storeFile
+
+    // release
+    storeFile = configXMl.hcmobile.android_keyStore_Release_FilePath[0].attribute("value")
+    if (storeFile == null || storeFile.length() == 0) {
+        signingConfigs.release.storeFile = file("../hc.keystore")
+        signingConfigs.release.storePassword = "hcmobile"
+        signingConfigs.release.keyAlias = "hc_mobile_release"
+        signingConfigs.release.keyPassword = "hcmobile"
+    } else {
+        File fl = file(storeFile);
+        if (!fl.exists()) {
+            fl = file("../" + storeFile);
+        }
+        signingConfigs.release.storeFile = fl
+        signingConfigs.release.storePassword = configXMl.hcmobile.android_keyStore_Release_FilePath_PassWord[0].attribute("value")
+        signingConfigs.release.keyAlias = configXMl.hcmobile.android_keyStore_Release_Alias[0].attribute("value")
+        signingConfigs.release.keyPassword = configXMl.hcmobile.android_keyStore_Release_Alias_PassWord[0].attribute("value")
+    }
+
+    // debug
+    storeFile = configXMl.hcmobile.android_keyStore_Debug_FilePath[0].attribute("value");
+    if (storeFile == null || storeFile.length() == 0) {
+        signingConfigs.debug.storeFile = file("../hc.keystore")
+        signingConfigs.debug.storePassword = "hcmobile"
+        signingConfigs.debug.keyAlias = "hc_mobile_debug"
+        signingConfigs.debug.keyPassword = "hcmobile"
+    } else {
+        File fl = file(storeFile);
+        if (!fl.exists()) {
+            fl = file("../" + storeFile);
+        }
+        signingConfigs.debug.storeFile = fl
+        signingConfigs.debug.storePassword = configXMl.hcmobile.android_keyStore_Debug_FilePath_PassWord[0].attribute("value")
+        signingConfigs.debug.keyAlias = configXMl.hcmobile.android_keyStore_Debug_Alias[0].attribute("value")
+        signingConfigs.debug.keyPassword = configXMl.hcmobile.android_keyStore_Debug_Alias_PassWord[0].attribute("value")
+    }
+}
+
+// todo 配置: 包名替换修改packageName声明
+def configDeclareAndroidPackage() {
+    def configXMlPackageName = configXMl.hcmobile.package[0].attribute("value")
+    def androidFestPackageName = appAndroidFest.attribute("package")
+    if (configXMlPackageName && androidFestPackageName && androidFestPackageName != configXMlPackageName) {
+        println("Build replace android packege:  " + androidFestPackageName + " ---> " + configXMlPackageName)
+        def config = file("./src/main/AndroidManifest.xml").getText();
+        config = config.replaceAll("package=\"" + androidFestPackageName + "\"", "package=\"" + configXMlPackageName + "\"")
+        file('./src/main/AndroidManifest.xml').withWriter('UTF-8') { writer ->
+            writer.write(config); writer.flush(); writer.close()
+        }
+    }
+}
+
+// todo 配置: 包依赖文件修正位置
+def configDeclareAndroidFile() {
+    File root = file("../")
+    String configXMlPackageName = configXMl.hcmobile.package[0].attribute("value")
+    String androidFestPackageName = appAndroidFest.attribute("package")
+    if (configXMlPackageName && androidFestPackageName && androidFestPackageName != configXMlPackageName) {
+        def config = file("../AndroidManifest.xml").getText();
+
+        def reStoreFile = [];
+        def list = configXMl.packageRelateJava;
+        if (list != null) {
+            for (def item : list) {
+                String value = item.attribute("value")
+                if (value != null && value.length() > 0) {
+                    reStoreFile.add(value);
+                }
+            }
+        }
+        for (String itemFile : reStoreFile) {
+            if (itemFile.endsWith(".java")) {
+                itemFile = itemFile.substring(0, itemFile.length() - 5);
+            }
+            // todo 替换androidFest清单文件中使用的 class声明
+            config = config.replaceAll(androidFestPackageName + "." + itemFile, configXMlPackageName + "." + itemFile);
+
+            println("移动java文件step 1:")
+            println(androidFestPackageName + "." + itemFile)
+            println(configXMlPackageName + "." + itemFile)
+
+            // todo 替换java类文件内容
+            String appendOri = gradle.ext.util.pathAppend(root.getAbsolutePath(), "src", androidFestPackageName.replace(".", "/"), itemFile.replace(".", "/"));
+            appendOri = appendOri + ".java";
+            String appendTar = gradle.ext.util.pathAppend(root.getAbsolutePath(), "src", configXMlPackageName.replace(".", "/"), itemFile.replace(".", "/"));
+            appendTar = appendTar + ".java";
+
+            println("移动java文件step 2:")
+            println(appendOri)
+            println(appendTar)
+
+            if (new File(appendOri).exists()) {
+                String content = file(appendOri).getText()
+                String packageDef = androidFestPackageName + "." + itemFile;
+                packageDef = packageDef.substring(0, packageDef.lastIndexOf("."))
+                String packageDefNew = configXMlPackageName + "." + itemFile;
+                packageDefNew = packageDefNew.substring(0, packageDefNew.lastIndexOf("."))
+                // todo 修改java文件package声明
+                content = content.replace("package " + packageDef, "package " + packageDefNew)
+
+                println("移动java文件step 3:")
+                println("package " + packageDef)
+                println("package " + packageDefNew)
+
+                // todo 写入新文件
+                gradle.ext.util.ensureFileExist(new File(appendTar), false);
+                file(appendTar).withWriter('UTF-8') { writer ->
+                    writer.write(content); writer.flush(); writer.close()
+                }
+                // todo 删除源文件
+                gradle.ext.util.deleteFile(new File(appendOri))
+            }
+        }
+
+        // todo 保存修改后的AndroidManifest
+        file('../AndroidManifest.xml').withWriter('UTF-8') { writer ->
+            writer.write(config); writer.flush(); writer.close()
+        }
+    }
+}
+
+// todo 运行插件gradle引用
+repositories {
+    flatDir {
+        for (File item : file("../").listFiles()) {
+            String name = item.getName();
+            if (name.startsWith("libs")) {
+                dirs += ("../" + name);
+            }
+        }
+    }
+}
+for (String item : gradle.ext.gradleImp) {
+    apply from: ("../" + item)
+    println("apply success app : " + ("../" + item))
+}
+
+
+dependencies {
+    implementation project(path: ':module_supcon')
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+}
+
+
+// todo  build apk 类型控制
+task hc_build_apk
+hc_build_apk.dependsOn {
+    def hcBuildType = configXMl.hcmobile.buildType[0].attribute("value")
+    if ("Release" == hcBuildType || "release" == hcBuildType) {
+        return "assembleRelease"
+    }
+    return "assembleDebug"
+}
+
+
+
+
+
+

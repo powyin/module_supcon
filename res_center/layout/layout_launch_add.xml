@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#f7f7f7">
+
+        <ImageView
+            android:id="@+id/hc_base_back_img"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="14dp"
+            android:src="@drawable/hc_edit_app_back" />
+
+        <TextView
+            android:id="@+id/hc_base_back_tex"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            android:text="返回"
+            android:textSize="15sp"
+            android:textColor="#5a9ca6"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="添加app"
+            android:textColor="#484848"
+            android:textSize="17sp" />
+
+
+
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ff888888" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/hc_edit_app_bac"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" >
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="应用主页地址:"
+            android:gravity="center"
+            android:textColor="#3b95fc"
+            android:textSize="17sp" />
+        <EditText
+            android:id="@+id/hc_app_edit_remote_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:hint="请输入应用首页地址"
+            android:textCursorDrawable="@drawable/hc_main_cousor"
+            android:cursorVisible = "true"
+            android:background="@null"
+            android:lines="1"
+            android:textColor="#464646"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/hc_edit_app_bac"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" >
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="离线包zip地址:"
+            android:gravity="center"
+            android:textColor="#3b95fc"
+            android:textSize="17sp" />
+        <EditText
+            android:id="@+id/hc_app_edit_zip_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:hint="离线包将直接下载到本地(可选)"
+            android:textCursorDrawable="@drawable/hc_main_cousor"
+            android:cursorVisible = "true"
+            android:background="@null"
+            android:lines="1"
+            android:textColor="#464646"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/hc_edit_app_bac"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" >
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="App启动图标:"
+            android:gravity="center"
+            android:textColor="#3b95fc"
+            android:textSize="17sp" />
+        <EditText
+            android:id="@+id/hc_app_edit_icon_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:hint="应用列表中显示图标"
+            android:textCursorDrawable="@drawable/hc_main_cousor"
+            android:cursorVisible = "true"
+            android:background="@null"
+            android:lines="1"
+            android:textColor="#464646"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/hc_edit_app_bac"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" >
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="App应用名:"
+            android:gravity="center"
+            android:textColor="#3b95fc"
+            android:textSize="17sp" />
+        <EditText
+            android:id="@+id/hc_app_edit_app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:hint="sample: 百度 水务"
+            android:textCursorDrawable="@drawable/hc_main_cousor"
+            android:cursorVisible = "true"
+            android:background="@null"
+            android:lines="1"
+            android:textColor="#464646"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="100"/>
+
+    <LinearLayout
+        android:id="@+id/launch_set_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/launch_set_action_cancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:text="取消"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:textColor="#ffffff"
+            android:background="#0090ff" />
+
+        <Space
+            android:layout_width="1px"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/launch_set_action_config"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:text="确认"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:textColor="#ffffff"
+            android:background="#ff0000"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>

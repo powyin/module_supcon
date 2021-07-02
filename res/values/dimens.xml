@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="sx_1">1sp</dimen>
+</resources>

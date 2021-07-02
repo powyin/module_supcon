@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>加载失败</title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <style>
+
+        body {
+            background-color: white;
+        }
+
+        .mui-bar-nav {
+            background-color: white;
+            box-shadow: 0 4px 7px 0 rgba(191, 191, 191, 0.4);
+        }
+
+        .mui-content {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background-color: white;
+        }
+
+        .img {
+            margin-top: 20%;
+            width: 100%;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        p {
+            margin-top: 5%;
+            text-align: center;
+            color: rgba(170, 170, 170, 1);
+            font-size: 15px;
+        }
+
+        .mui-btn {
+            width: 80%;
+            height: 44px;
+            margin-left: 10%;
+            position: absolute;
+            bottom: 10%;
+        }
+
+        .pow-hide {
+            visibility: hidden
+        }
+
+
+    </style>
+</head>
+<body>
+
+<header class="mui-bar mui-bar-nav">
+    <span id="backBtn" class="mui-icon mui-icon-arrowleft mui-pull-left pow-hide"
+          onclick="mui.back()"></span>
+    <h1 class="mui-title">加载失败</h1>
+</header>
+
+<div class="mui-content">
+    <img class="img" src="img/error.png">
+    <p id="text">您访问的页面暂时无法打开，点击屏幕重试</p>
+    <button id="resetBtn" type="button"
+            class="mui-btn mui-btn-primary mui-btn-outlined pow-hide ">重置首页
+    </button>
+</div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/mui.min.js"></script>
+<script type="application/javascript" charset="UTF-8" src="supconit://hcmobile.js"></script>
+<script>
+    mui.init();
+    $(document).ready(function () {
+
+
+        var s = parseFloat(getUrlParam('s'));
+        var l = JSON.parse(getUrlParam('l'));
+        var d = getUrlParam('d');
+
+        if (l) {
+            var h = $(".mui-bar").height();
+            $(".mui-bar").css("height", s/2.5 + h + 'px');
+            $(".mui-bar").css("padding-top", s/2.5 + 'px');
+            $(".mui-content").css("padding-top", s/2.5 + h + 'px');
+        }
+
+        var code = getUrlParam('code');
+        if (code === 1 || code === "1") {
+            document.getElementById("backBtn").style.visibility = "hidden";
+        } else {
+            document.getElementById("backBtn").style.visibility = "visible";
+        }
+
+        if (d !== 'debug') {
+            document.getElementById("resetBtn").style.visibility = "hidden";
+        } else {
+            document.getElementById("resetBtn").style.visibility = "visible";
+        }
+
+
+    });
+
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]);
+        return null;
+    }
+
+
+    $(function () {
+
+        $("#resetBtn").click(function (event) {
+            event.stopPropagation();
+            // 重置首页
+            navigator.mobileCenter.reset();
+        });
+
+        $(".mui-content").click(function () {
+
+            if (mui.os.ios) {
+                var u = getUrlParam('url');
+                window.location.replace(u);
+            } else {
+                navigator.mobileCenter.reload();
+            }
+        })
+    });
+
+
+</script>
+</body>
+
+</html>

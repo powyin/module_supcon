@@ -1,0 +1,292 @@
+// todo 用于上传maven仓库 平时使用请注解
+//apply plugin: 'com.android.library'
+//apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.jfrog.bintray'
+//version = "1.1.1"
+
+import java.util.regex.Pattern
+
+ext {
+    configXMl = new XmlParser(false, false).parseText(file("../res/xml/config.xml").getText());
+    // 打印日志
+    cdvIndexUrl = configXMl.hcmobile.index[0].attribute("value")
+    cdvLoginUrl = configXMl.hcmobile.login[0].attribute("value")
+}
+
+
+
+//----------------------------------------------------------------android gradle --------------------------------------------------------------//
+apply plugin: 'com.android.library'
+
+// todo 运行插件gradle引用
+repositories {
+    flatDir {
+        for (File item : file("../").listFiles()) {
+            String name = item.getName();
+            if (name.startsWith("libs")) {
+                dirs += ("../" + name);
+            }
+        }
+    }
+}
+for (String item : gradle.ext.gradleImp) {
+    apply from: ("../" + item)
+    println("apply success app : " + ("../" + item))
+}
+
+
+android {
+    resourcePrefix "supcon"
+    sourceSets {
+        main {
+            manifest.srcFile '../AndroidManifest.xml'
+            java.srcDirs = ['../src']
+            aidl.srcDirs = ['../src']
+            renderscript.srcDirs = ['../src']
+            assets.srcDirs = ['../assets']
+            resources.srcDirs = ['../src']
+            res.srcDirs = []
+            // todo 拼装res和libs资源
+            for (File item : file("../").listFiles()) {
+                if (item.getName().startsWith("res")) {
+                    res.srcDirs += ("../" + item.getName())
+                }
+                if (item.getName().startsWith("libs")) {
+                    jniLibs.srcDirs += ("../" + item.getName())
+                }
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
+            zipAlignEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    defaultConfig {
+        targetSdkVersion 27
+        minSdkVersion 19
+        resValue("string", "loginUrl", cdvLoginUrl)
+        resValue("string", "indexUrl", cdvIndexUrl)
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a"
+        }
+        dexOptions {
+            javaMaxHeapSize "4g"
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'push_version'
+        exclude 'miui_push_version'        
+    }
+
+    repositories {
+        flatDir {
+            dirs '../libs'
+        }
+    }
+
+}
+
+if (!android.defaultConfig.manifestPlaceholders.containsKey("tencent_scheme")) {
+    android.defaultConfig.manifestPlaceholders.put("tencent_scheme", "invaild")
+}
+if (!android.defaultConfig.manifestPlaceholders.containsKey("NIM_KEY")) {
+    android.defaultConfig.manifestPlaceholders.put("NIM_KEY", "invaild")
+}
+if (!android.defaultConfig.manifestPlaceholders.containsKey("NIM_SECRET_KEY")) {
+    android.defaultConfig.manifestPlaceholders.put("NIM_SECRET_KEY", "invaild")
+}
+if (!android.defaultConfig.manifestPlaceholders.containsKey("huawei_scheme")) {
+    android.defaultConfig.manifestPlaceholders.put("huawei_scheme", "invaild")
+}
+if (!android.defaultConfig.manifestPlaceholders.containsKey("rong_im_key")) {
+    android.defaultConfig.manifestPlaceholders.put("rong_im_key", "invaild")
+}
+if (!android.defaultConfig.manifestPlaceholders.containsKey("rong_im_id")) {
+    android.defaultConfig.manifestPlaceholders.put("rong_im_id", "invaild")
+}
+if (!android.defaultConfig.manifestPlaceholders.containsKey("rc_file_path")) {
+    android.defaultConfig.manifestPlaceholders.put("rc_file_path", "@xml/provider_paths")
+}
+
+
+
+configurations {
+    all*.exclude group: 'com.android.support', module: 'multidex'
+}
+
+dependencies {
+    for (File item : file("../").listFiles()) {
+        String name = item.getName();
+        if (name.startsWith("libs") && item.isDirectory() && item.listFiles().length > 0) {
+            implementation fileTree(dir: ("../" + name), include: ['*.jar'])
+            for (File aar : item.listFiles()) {
+                String aarName = aar.getName();
+                if (aarName.endsWith(".aar")) {
+                    println(aar.getName().substring(0, aarName.length() - ".aar".length()));
+                    implementation(name: aar.getName().substring(0, aarName.length() - ".aar".length()), ext: 'aar')
+                }
+            }
+        }
+        if (name.startsWith("module") && item.listFiles().length > 1 && name != "module_app" && name != "module_supcon") {
+            implementation project(path: ':' + name)
+        }
+    }
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    //noinspection GradleDependency
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    //noinspection GradleDependency
+    implementation 'com.squareup.okio:okio:1.9.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation('com.github.powyin:scroll:3.2.7') { transitive = false }
+    implementation('com.github.powyin:switch:3.1.5') { transitive = false }
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+    implementation 'com.tencent.tbs.tbssdk:sdk:43903'
+
+    // todo implementation依赖
+    for (String item : gradle.ext.pluginImp) {
+            implementation item
+        }
+}
+
+println("gradle build end   time : " + System.currentTimeMillis())
+
+// todo  build aar 类型控制
+task hc_build_aar {
+    doLast{
+        def hcBuildType = configXMl.hcmobile.buildType[0].attribute("value")
+        if ("Release" == hcBuildType || "release" == hcBuildType) {
+            copy {
+                from(file("./build/outputs/aar/module_supcon-release.aar"))
+                into(file("../apks/sdk/"))
+                rename{
+                    "module_supcon.aar"
+                }
+            }
+        }else {
+            copy {
+                from(file("./build/outputs/aar/module_supcon-debug.aar"))
+                into(file("../apks/sdk/"))
+                rename{
+                    "module_supcon.aar"
+                }
+            }
+        }
+    }
+}
+hc_build_aar.dependsOn {
+    def hcBuildType = configXMl.hcmobile.buildType[0].attribute("value")
+    if ("Release" == hcBuildType || "release" == hcBuildType) {
+        return "assembleRelease"
+    }
+    return "assembleDebug"
+}
+
+//
+//
+//def siteUrl = 'https://github.com/powyin/slide'                  // 项目的主页
+//def gitUrl = 'git@github.com:powyin/slide.git'                   // Git仓库的url
+//group = 'com.github.powyin'                                      // Maven Group ID for the artifact，一般填你唯一的包名
+//
+//install {
+//    repositories.mavenInstaller {
+//        pom {
+//            project {
+//                packaging 'aar'
+//                // Add your description here
+//                name 'android  slide switch'     //项目的描述 你可以多写一点
+//                url siteUrl
+//                // Set your license
+//                licenses {
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id 'powyin'        //填写的一些基本信息
+//                        name 'yinhaoxiang'
+//                        email 'haoxiangyin@gmail.com'
+//                    }
+//                }
+//                scm {
+//                    connection gitUrl
+//                    developerConnection gitUrl
+//                    url siteUrl
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    options.encoding = "UTF-8"
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//
+//artifacts {
+//    //  archives javadocJar
+//    archives sourcesJar
+//}
+//
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//
+//bintray {
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+//    configurations = ['archives']
+//    pkg {
+//        repo = "maven"
+//        name = "slide-switch"    //发布到JCenter上的项目名字
+//        websiteUrl = siteUrl
+//        vcsUrl = gitUrl
+//        licenses = ["Apache-2.0"]
+//        publish = true
+//    }
+//}

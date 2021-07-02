@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/hc_mobile_activity_content"
+    android:background="#ffffff">
+
+    <FrameLayout
+        android:id="@+id/hc_mobile_activity_sign"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/hc_mobile_activity_sign_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/hc_mobile_activity_sign_error" />
+
+
+        <ImageView
+            android:id="@+id/hc_mobile_activity_sign_skip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:src="@mipmap/hc_mobile_activity_sign_skip"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="50dp"
+            android:visibility="visible"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="中控易动 https://www.yd-mobile.cn"
+            android:textColor="#A3000000"
+            android:textSize="16sp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_marginBottom="26dp"/>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/hc_mobile_activity_sign_h"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+
+        <ImageView
+            android:id="@+id/hc_mobile_activity_sign_error_h"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/hc_mobile_activity_sign_error_h" />
+
+
+        <ImageView
+            android:id="@+id/hc_mobile_activity_sign_skip_h"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:src="@mipmap/hc_mobile_activity_sign_skip"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="26dp"
+            android:visibility="visible"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="中控易动 https://www.yd-mobile.cn"
+            android:textColor="#A3000000"
+            android:textSize="16sp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_marginBottom="15dp"/>
+
+
+    </FrameLayout>
+
+
+
+
+</FrameLayout>

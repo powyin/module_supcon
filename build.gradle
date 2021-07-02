@@ -1,0 +1,103 @@
+buildscript {
+    ext.kotlin_version = '1.3.61'
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven {
+            url "https://jitpack.io"
+        }
+        jcenter()
+        google()
+        maven {
+            url "http://maven.google.com"
+        }
+        maven { url 'https://developer.huawei.com/repo/'}
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+		classpath 'com.huawei.agconnect:agcp:1.1.1.300'
+    }
+}
+subprojects {
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex') ) {
+                details.useVersion "27.1.1"
+            }
+        }
+    }
+}
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        mavenCentral()
+        maven { url 'https://developer.huawei.com/repo/'}
+        maven { url 'https://repo1.maven.org/maven2/' }
+        maven { url "http://developer.huawei.com/repo" }
+        maven { url "http://maven.rongcloud.cn/repository/maven-releases/" }
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url "http://maven.google.com" }
+        jcenter()
+        google()
+
+    }
+}
+
+
+// todo 插件瘦身 移除引用的gradle引用
+gradle.ext.gradleImp = [
+// PLUGIN GRADLE EXTENSIONS START
+// PLUGIN GRADLE EXTENSIONS END
+]
+
+// todo 插件瘦身 移除引用的依赖库
+gradle.ext.pluginImp = [
+// SUB-PROJECT DEPENDENCIES START
+    "org.bouncycastle:bcprov-jdk15on:1.60",
+    "org.bouncycastle:bcpkix-jdk15on:1.60",
+    "com.github.powyin:uzip:11.5.0",
+    "com.github.chrisbanes.photoview:library:1.2.4",
+    // SUB-PROJECT DEPENDENCIES END
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//// todo 插件瘦身 移除加入的gradle运行依赖
+//for (String removeItem : gradle.ext.removePluginList) {
+//    def plugin = gradle.ext.pluginInfo.get(removeItem)
+//    if (plugin == null) continue
+//    for (def item : plugin.frameworkList) {
+//        gradle.ext.gradleImp.remove(item)
+//    }
+//}
+//
+//
+//
+//
+//
+//          // todo 用于上传maven仓库 平时使用请注解
+//        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+//        classpath 'com.github.dcendents:android-maven-plugin:1.2'

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hc_app_title_uni"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    tools:ignore="ResourceName">
+
+    <LinearLayout
+        android:id="@+id/hc_mini_back_color_uni_uni"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="1dp" />
+
+        <FrameLayout
+            android:id="@+id/hc_mini_click_left_uni_uni"
+            android:visibility="invisible"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/hc_mobile_app_title_bac" />
+
+        </FrameLayout>
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/hc_mini_title_uni_uni"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:lines="1"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="#404040"
+            android:ellipsize="end"
+            android:textSize="21sp"
+            android:gravity="center"
+            />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="1dp" />
+
+        <FrameLayout
+
+            android:id="@+id/hc_mini_click_right_uni_uni"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical">
+
+
+
+        </FrameLayout>
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/hc_mini_button_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_gravity="bottom"
+        android:background="#AAAAAA" />
+
+</FrameLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/hc_main_launch_app_setting"
+        android:layout_marginRight="3dp">
+
+        <TextView
+            android:id="@+id/hc_launch_setting_add"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:text="添加"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:gravity="center" />
+
+        <View
+            android:layout_width="110dp"
+            android:layout_height="1dp"
+            android:background="#585858"/>
+
+        <TextView
+            android:id="@+id/hc_launch_setting_det"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:text="删除"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+</FrameLayout>
+
