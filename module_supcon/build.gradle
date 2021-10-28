@@ -18,7 +18,6 @@ ext {
 //----------------------------------------------------------------android gradle --------------------------------------------------------------//
 apply plugin: 'com.android.library'
 // 添加插件
-apply plugin: 'com.mob.sdk'
 // todo 运行插件gradle引用
 repositories {
     flatDir {
@@ -139,17 +138,7 @@ if (!android.defaultConfig.manifestPlaceholders.containsKey("rc_file_path")) {
 configurations {
     all*.exclude group: 'com.android.support', module: 'multidex'
 }
-MobSDK {
-    if(configXMl.hcmobile.mobsdk_appkey[0]){
-        appKey configXMl.hcmobile.mobsdk_appkey[0].attribute("value")
-    }
-    if(configXMl.hcmobile.mobsdk_appSecret[0]){
-        appSecret configXMl.hcmobile.mobsdk_appSecret[0].attribute("value")
-    }
-    SMSSDK {
-//        autoSMS true
-    }
-}
+
 dependencies {
     for (File item : file("../").listFiles()) {
         String name = item.getName();

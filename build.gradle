@@ -15,7 +15,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 		classpath 'com.huawei.agconnect:agcp:1.1.1.300'
         // 注册MobSDK
-        classpath 'com.mob.sdk:MobSDK:+'		
+        // classpath 'com.mob.sdk:MobSDK:+'
     }
 }
 subprojects {
