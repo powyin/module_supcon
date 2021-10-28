@@ -1,25 +1,41 @@
 package com.supconit.hcmobile.plugins.cent;
 
+
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.XmlResourceParser;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
-
 import com.gyf.immersionbar.ImmersionBar;
 import com.supconit.hcmobile.HcmobileApp;
 import com.supconit.hcmobile.MainActivity;
+import com.supconit.hcmobile.util.IsPerssionUtil;
 import com.supconit.hcmobile.util.Util;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.Const;
 import org.apache.cordova.CordovaActivity;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.xmlpull.v1.XmlPullParser;
 
 public class Center extends CordovaPlugin {
+
+
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        if (HcmobileApp.getApplication().getPackageName().equals("com.hcapp.test")){
+            IsPerssionUtil.requestResult();
+        }else {
+            SharedPreferences sharedPreferences=HcmobileApp.getApplication().getSharedPreferences("powyin_app_data_is_perssion", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putBoolean("isPerssion",true);
+            editor.commit();
+        }
+    }
 
     /**
      * Executes the request and returns PluginResult.

@@ -2,6 +2,7 @@ package com.supconit.hcmobile.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
@@ -203,7 +204,21 @@ public class NetUtil {
     //todo -------mac -----
 
     public static String getMac(Context context) {
+        if (HcmobileApp.getApplication().getPackageName().equals("com.hcapp.test")){
+            SharedPreferences sharedPreferences=HcmobileApp.getApplication().getSharedPreferences("powyin_app_data_is_perssion", Context.MODE_PRIVATE);
+            Boolean isPerssion=sharedPreferences.getBoolean("isPerssion",true);
+            if (isPerssion){
+                return getMacNow(context);
+            }else {
+                return "";
+            }
+        }else {
+           return getMacNow(context);
+        }
 
+    }
+
+    public static String getMacNow(Context context) {
         String strMac = null;
         Log.e("=====", "6.0以下");
 
@@ -242,7 +257,6 @@ public class NetUtil {
         }
         return strMac;
     }
-
     /**
      * 根据wifi信息获取本地mac
      * @param context

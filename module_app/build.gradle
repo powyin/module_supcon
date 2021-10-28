@@ -8,10 +8,14 @@ ext {
     staticBuildConfig = "";
 }
 
+def hwFile = file("./agconnect-services.json");
+if (hwFile.exists() && hwFile.size() > 0) {
+    apply plugin: 'com.huawei.agconnect'
+}
+
 apply plugin: 'com.android.application'
 
 android {
-
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 27
@@ -25,26 +29,21 @@ android {
             javaMaxHeapSize "4g"
         }
     }
-
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
-
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
     }
-
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
-
     signingConfigs {
         release {}
         debug {}
     }
     configDeclareKeyStore(signingConfigs)
-
     buildTypes {
         release {
             signingConfig signingConfigs.release

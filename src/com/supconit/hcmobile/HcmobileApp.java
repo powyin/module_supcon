@@ -10,19 +10,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Build;
-
-
 import android.text.TextUtils;
-import android.util.Log;
-
 import com.supconit.hcmobile.appplugin.ApplicationObserver;
-import com.supconit.hcmobile.util.AesEncryptUtils;
-import com.tencent.smtt.sdk.QbSdk;
-
-
 import org.apache.cordova.Const;
 import org.xmlpull.v1.XmlPullParser;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.ref.WeakReference;
@@ -229,22 +220,22 @@ public class HcmobileApp implements Application.ActivityLifecycleCallbacks, Seri
         new HotObserver().onCreate();
         application.registerActivityLifecycleCallbacks(this);
 
-        QbSdk.initX5Environment(application, new QbSdk.PreInitCallback() {
-            @Override
-            public void onCoreInitFinished() {
-                Log.d("powyin", "tbs : onCoreInitFinished");
-            }
-
-            @Override
-            public void onViewInitFinished(boolean initResult) {
-                Log.d("powyin", "tbs : onViewInitFinished " + initResult);
-                if (initResult) {
-                    mTbsCode = 1;
-                } else {
-                    mTbsCode = 2;
-                }
-            }
-        });
+//        QbSdk.initX5Environment(application, new QbSdk.PreInitCallback() {
+//            @Override
+//            public void onCoreInitFinished() {
+//                Log.d("powyin", "tbs : onCoreInitFinished");
+//            }
+//
+//            @Override
+//            public void onViewInitFinished(boolean initResult) {
+//                Log.d("powyin", "tbs : onViewInitFinished " + initResult);
+//                if (initResult) {
+//                    mTbsCode = 1;
+//                } else {
+//                    mTbsCode = 2;
+//                }
+//            }
+//        });
 
         HashSet<String> applicationObservableList = getApplicationObservableList();
         for (String observerClass : applicationObservableList) {

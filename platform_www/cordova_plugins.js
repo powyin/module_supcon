@@ -81,22 +81,6 @@ module.exports = [
     ]
   },
   {
-    "id": "hcmobile-plugin-debug.Debugger",
-    "file": "plugins/hcmobile-plugin-debug/www/debugger.js",
-    "pluginId": "hcmobile-plugin-debug",
-    "merges": [
-      "navigator.debugger"
-    ]
-  },
-  {
-    "id": "hcmobile-plugin-developer.HC_Developer",
-    "file": "plugins/hcmobile-plugin-developer/www/developer.js",
-    "pluginId": "hcmobile-plugin-developer",
-    "clobbers": [
-      "navigator.developer"
-    ]
-  },
-  {
     "id": "hcmobile-plugin-file-base.DirectoryEntry",
     "file": "plugins/hcmobile-plugin-file-base/www/DirectoryEntry.js",
     "pluginId": "hcmobile-plugin-file-base",
@@ -262,6 +246,22 @@ module.exports = [
       "cordova"
     ],
     "runs": true
+  },
+  {
+    "id": "hcmobile-plugin-developer.HC_Developer",
+    "file": "plugins/hcmobile-plugin-developer/www/developer.js",
+    "pluginId": "hcmobile-plugin-developer",
+    "clobbers": [
+      "navigator.developer"
+    ]
+  },
+  {
+    "id": "hcmobile-plugin-debug.Debugger",
+    "file": "plugins/hcmobile-plugin-debug/www/debugger.js",
+    "pluginId": "hcmobile-plugin-debug",
+    "merges": [
+      "navigator.debugger"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -270,9 +270,9 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-plugin-cocoapod-support": "1.3.0",
   "hcmobile-plugin-center": "0.0.0",
-  "hcmobile-plugin-debug": "0.0.0",
+  "hcmobile-plugin-file-base": "0.0.0",
   "hcmobile-plugin-developer": "0.0.0",
-  "hcmobile-plugin-file-base": "0.0.0"
+  "hcmobile-plugin-debug": "0.0.0"
 };
 // BOTTOM OF METADATA
 });

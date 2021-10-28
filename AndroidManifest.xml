@@ -1,13 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <manifest android:hardwareAccelerated="true" android:versionCode="1" android:versionName="0.0.1" package="com.supconit.inner_hcmobile" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
-    <application android:allowBackup="true" android:hardwareAccelerated="true" android:icon="@mipmap/icon" android:label="@string/app_name" android:supportsRtl="true" tools:ignore="AllowBackup,GoogleAppIndexingWarning" tools:replace="android:icon,android:allowBackup">
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="com.supconit.hcmobile.MainActivity" android:screenOrientation="${hc_origin_def}" android:theme="@style/SupAppTheme" android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:name="com.supconit.hcmobile.MainActivityNoSingle" android:screenOrientation="${hc_origin_def}" android:theme="@style/SupAppTheme" android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity android:name="com.supconit.hcmobile.EnterActivity" android:screenOrientation="${hc_origin_def}" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
-        </activity>
+    <application android:allowBackup="true" android:hardwareAccelerated="true" android:icon="@mipmap/icon" android:label="@string/app_name" android:name="com.supconit.hcmobile.Ap" android:supportsRtl="true" tools:ignore="AllowBackup,GoogleAppIndexingWarning" tools:replace="android:icon,android:allowBackup,android:name">
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="com.supconit.hcmobile.MainActivity" android:screenOrientation="${hc_origin_def}" android:theme="@style/SupAppTheme" android:windowSoftInputMode="adjustResize" />
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:name="com.supconit.hcmobile.MainActivityNoSingle" android:screenOrientation="${hc_origin_def}" android:theme="@style/SupAppTheme" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.supconit.hcmobile.EnterActivity" android:screenOrientation="${hc_origin_def}" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <activity android:name="com.supconit.hcmobile.Test" android:screenOrientation="${hc_origin_def}" android:theme="@style/SupAppTheme" />
         <meta-data android:name="com.huawei.hms.client.appid" android:value="${huawei_scheme}" />
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:name="com.supconit.hcmobile.plugins.cent.ReloadUrlActivity" android:screenOrientation="${hc_origin_def}" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -22,6 +19,7 @@
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />

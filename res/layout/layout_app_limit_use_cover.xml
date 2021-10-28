@@ -11,29 +11,72 @@
         android:layout_height="match_parent"
         android:background="#85000000" />
 
-    <ImageView
-        android:id="@+id/sup_con_limit_use_image"
-        android:layout_width="325dp"
-        android:layout_height="325dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="110dp"
-        android:src="@mipmap/hc_mobile_limit_use_info" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="1px"
+            android:layout_height="0dp"
+            android:layout_weight="5" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15">
+
+            <ImageView
+                android:id="@+id/sup_con_limit_use_image"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@mipmap/hc_mobile_limit_use_info" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="1px"
+                    android:layout_height="0dp"
+                    android:layout_weight="50" />
+
+                <View
+                    android:id="@+id/sup_con_limit_use_url"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|center_horizontal" />
+
+                <Space
+                    android:layout_width="1px"
+                    android:layout_height="0dp"
+                    android:layout_weight="12" />
+            </LinearLayout>
 
 
-    <View
-        android:id="@+id/sup_con_limit_use_url"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp" />
+        </FrameLayout>
 
-    <ImageView
-        android:id="@+id/sup_con_limit_use_close"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="95dp"
-        android:src="@mipmap/hc_mobile_limit_use_close" />
+        <Space
+            android:layout_width="1px"
+            android:layout_height="0dp"
+            android:layout_weight="3" />
+
+        <ImageView
+            android:id="@+id/sup_con_limit_use_close"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/hc_mobile_limit_use_close" />
+
+        <Space
+            android:layout_width="1px"
+            android:layout_height="0dp"
+            android:layout_weight="5" />
+
+    </LinearLayout>
 
 
 </FrameLayout>

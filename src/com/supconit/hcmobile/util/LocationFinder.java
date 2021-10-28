@@ -45,7 +45,7 @@ public class LocationFinder {
     private static LocationFinder androidLocation;
     private static int isConfig;
 
-    static LocationFinder getInstance(Context context) {
+    public static LocationFinder getInstance(Context context) {
         if (androidLocation == null) {
             androidLocation = new LocationFinder();
         }

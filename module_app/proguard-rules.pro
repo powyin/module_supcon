@@ -128,6 +128,8 @@
 -dontwarn com.lidroid.**
 -keep class com.mcs.** {*;}
 -dontwarn com.mcs.**
+-keep class com.meizu.** {*;}
+-dontwarn com.meizu.**
 -keep class com.mobile.** {*;}
 -dontwarn com.mobile.**
 -keep class com.mp4parser.** {*;}
@@ -198,6 +200,7 @@
 -dontwarn tv.**
 -keep class uk.** {*;}
 -dontwarn uk.**
+
 
 
 

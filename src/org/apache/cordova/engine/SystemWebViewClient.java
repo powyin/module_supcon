@@ -140,6 +140,16 @@ public class SystemWebViewClient extends WebViewClient {
             hc_authorize_server_address = hc_authorize_server_address.replace("https://", "http://");
             copyUrl = copyUrl.replace("https://", "http://");
 
+            if (copyUrl.contains("?")) {
+                copyUrl = copyUrl.substring(0, copyUrl.indexOf("?"));
+            }
+            if (hc_authorize_server_address.contains("?")) {
+                hc_authorize_server_address = hc_authorize_server_address.substring(0, copyUrl.indexOf("?"));
+            }
+
+            System.out.println("1:::::::>>>>>" + copyUrl);
+            System.out.println("2:::::::>>>>>" + hc_authorize_server_address);
+
             if (hc_authorize_server_address.equalsIgnoreCase(copyUrl)) {
                 HcmobileApp.getHandle().post(new Runnable() {
                     @Override

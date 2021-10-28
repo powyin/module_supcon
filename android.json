@@ -37,19 +37,19 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"CenterObserver\"><param name=\"application-observer-package\" value=\"com.supconit.hcmobile.plugins.debug.ServerObserver\" /></feature>",
+              "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
             {
-              "xml": "<feature name=\"Debugger\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.debug.DebugPlugin\" /></feature>",
+              "xml": "<allow-navigation href=\"cdvfile:*\" />",
               "count": 1
             },
             {
-              "xml": "<gitMark><gitAddress value=\"git@git.supconit.com:mobile/hcmobile-plugin-debug.git\" /><gitBranch value=\"dev\" /><pluginId value=\"hcmobile-plugin-debug\" /><pluginVersion value=\"dev\" /></gitMark>",
+              "xml": "<gitMark><gitAddress value=\"git@git.supconit.com:mobile/hcmobile-plugin-file-base.git\" /><gitBranch value=\"dev\" /><pluginId value=\"hcmobile-plugin-file-base\" /><pluginVersion value=\"dev\" /></gitMark>",
               "count": 1
             },
             {
-              "xml": "<feature name=\"HC_Developer\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.developer.developer\" /></feature>",
+              "xml": "<feature name=\"HC_Developer\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.developer.developer\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
             {
@@ -61,15 +61,15 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "xml": "<feature name=\"CenterObserver\"><param name=\"application-observer-package\" value=\"com.supconit.hcmobile.plugins.debug.ServerObserver\" /></feature>",
               "count": 1
             },
             {
-              "xml": "<allow-navigation href=\"cdvfile:*\" />",
+              "xml": "<feature name=\"Debugger\"><param name=\"android-package\" value=\"com.supconit.hcmobile.plugins.debug.DebugPlugin\" /></feature>",
               "count": 1
             },
             {
-              "xml": "<gitMark><gitAddress value=\"git@git.supconit.com:mobile/hcmobile-plugin-file-base.git\" /><gitBranch value=\"dev\" /><pluginId value=\"hcmobile-plugin-file-base\" /><pluginVersion value=\"dev\" /></gitMark>",
+              "xml": "<gitMark><gitAddress value=\"git@git.supconit.com:mobile/hcmobile-plugin-debug.git\" /><gitBranch value=\"dev\" /><pluginId value=\"hcmobile-plugin-debug\" /><pluginVersion value=\"dev\" /></gitMark>",
               "count": 1
             }
           ]
@@ -135,13 +135,13 @@
     "hcmobile-plugin-center": {
       "PACKAGE_NAME": "com.supconit.hcmobile"
     },
-    "hcmobile-plugin-debug": {
+    "hcmobile-plugin-file-base": {
       "PACKAGE_NAME": "com.supconit.hcmobile"
     },
     "hcmobile-plugin-developer": {
       "PACKAGE_NAME": "com.supconit.hcmobile"
     },
-    "hcmobile-plugin-file-base": {
+    "hcmobile-plugin-debug": {
       "PACKAGE_NAME": "com.supconit.hcmobile"
     }
   },
@@ -225,22 +225,6 @@
       "pluginId": "hcmobile-plugin-center",
       "merges": [
         "navigator.statusbar"
-      ]
-    },
-    {
-      "id": "hcmobile-plugin-debug.Debugger",
-      "file": "plugins/hcmobile-plugin-debug/www/debugger.js",
-      "pluginId": "hcmobile-plugin-debug",
-      "merges": [
-        "navigator.debugger"
-      ]
-    },
-    {
-      "id": "hcmobile-plugin-developer.HC_Developer",
-      "file": "plugins/hcmobile-plugin-developer/www/developer.js",
-      "pluginId": "hcmobile-plugin-developer",
-      "clobbers": [
-        "navigator.developer"
       ]
     },
     {
@@ -409,14 +393,30 @@
         "cordova"
       ],
       "runs": true
+    },
+    {
+      "id": "hcmobile-plugin-developer.HC_Developer",
+      "file": "plugins/hcmobile-plugin-developer/www/developer.js",
+      "pluginId": "hcmobile-plugin-developer",
+      "clobbers": [
+        "navigator.developer"
+      ]
+    },
+    {
+      "id": "hcmobile-plugin-debug.Debugger",
+      "file": "plugins/hcmobile-plugin-debug/www/debugger.js",
+      "pluginId": "hcmobile-plugin-debug",
+      "merges": [
+        "navigator.debugger"
+      ]
     }
   ],
   "plugin_metadata": {
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-cocoapod-support": "1.3.0",
     "hcmobile-plugin-center": "0.0.0",
-    "hcmobile-plugin-debug": "0.0.0",
+    "hcmobile-plugin-file-base": "0.0.0",
     "hcmobile-plugin-developer": "0.0.0",
-    "hcmobile-plugin-file-base": "0.0.0"
+    "hcmobile-plugin-debug": "0.0.0"
   }
 }

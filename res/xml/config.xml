@@ -22,6 +22,7 @@
         <oppo_appKey value="9bbfee188fac4c3ea54ccb1c0c373e29" />
         <oppo_appSecret value="69abd48955e849b29cbbfa575ed23fe5" />
         <rongIM_appKey value="vnroth0kvad0o" />
+        <rongIM_appSecret value="ouVIFRSByoqT" />
         <gaodeMapKeyIos value="" />
         <gaodeMapKeyAndroid value="95ad8739cddfb8b8b412f89d8e08aa47" />
         <umengAndroidKey value="5bc7fa60f1f556e639000014" />
@@ -66,6 +67,8 @@
         <app_title_show value="" />
         <app_title_bac value="" />
         <android_canal value="" />
+        <mobsdk_appkey value="moba6b6c6d6" />
+        <mobsdk_appSecret value="b89d2427a3bc7ad1aea1e1e8c1d36bf3" />
         <sdklib>
         </sdklib>
     </hcmobile>
@@ -112,20 +115,20 @@
         <pluginId value="hcmobile-plugin-center" />
         <pluginVersion value="dev" />
     </gitMark>
-    <feature name="CenterObserver">
-        <param name="application-observer-package" value="com.supconit.hcmobile.plugins.debug.ServerObserver" />
+    <feature name="File">
+        <param name="android-package" value="com.supconit.hcmobile.plugins.file.FileUtils" />
+        <param name="onload" value="true" />
     </feature>
-    <feature name="Debugger">
-        <param name="android-package" value="com.supconit.hcmobile.plugins.debug.DebugPlugin" />
-    </feature>
+    <allow-navigation href="cdvfile:*" />
     <gitMark>
-        <gitAddress value="git@git.supconit.com:mobile/hcmobile-plugin-debug.git" />
+        <gitAddress value="git@git.supconit.com:mobile/hcmobile-plugin-file-base.git" />
         <gitBranch value="dev" />
-        <pluginId value="hcmobile-plugin-debug" />
+        <pluginId value="hcmobile-plugin-file-base" />
         <pluginVersion value="dev" />
     </gitMark>
     <feature name="HC_Developer">
         <param name="android-package" value="com.supconit.hcmobile.plugins.developer.developer" />
+        <param name="onload" value="true" />
     </feature>
     <feature name="DevObserver">
         <param name="application-observer-package" value="com.supconit.hcmobile.plugins.developer.DeveloperObServer" />
@@ -136,15 +139,16 @@
         <pluginId value="hcmobile-plugin-developer" />
         <pluginVersion value="dev" />
     </gitMark>
-    <feature name="File">
-        <param name="android-package" value="com.supconit.hcmobile.plugins.file.FileUtils" />
-        <param name="onload" value="true" />
+    <feature name="CenterObserver">
+        <param name="application-observer-package" value="com.supconit.hcmobile.plugins.debug.ServerObserver" />
     </feature>
-    <allow-navigation href="cdvfile:*" />
+    <feature name="Debugger">
+        <param name="android-package" value="com.supconit.hcmobile.plugins.debug.DebugPlugin" />
+    </feature>
     <gitMark>
-        <gitAddress value="git@git.supconit.com:mobile/hcmobile-plugin-file-base.git" />
+        <gitAddress value="git@git.supconit.com:mobile/hcmobile-plugin-debug.git" />
         <gitBranch value="dev" />
-        <pluginId value="hcmobile-plugin-file-base" />
+        <pluginId value="hcmobile-plugin-debug" />
         <pluginVersion value="dev" />
     </gitMark>
 </widget>
